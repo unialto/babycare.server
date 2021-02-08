@@ -1,6 +1,5 @@
-package kr.pbs.babycare.server.service;
+package kr.pbs.babycare.server.api.join;
 
-import kr.pbs.babycare.server.entity.Parent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,16 +13,16 @@ class JoinServiceTest {
 
     @Test
     void join() {
-        Parent parent = Parent.builder()
+        JoinDTO dto = JoinDTO.builder()
                 .email("unialto@nate.com")
                 .password("babycare")
                 .name("베게")
                 .build();
 
-        joinService.join(parent);
+        joinService.join(dto);
 
-        System.out.println(parent);
+        System.out.println(dto);
 
-        assertNotEquals(parent.getIdx(), 0);
+        assertNotEquals(dto.getIdx(), 0);
     }
 }

@@ -1,4 +1,4 @@
-package kr.pbs.babycare.server.service;
+package kr.pbs.babycare.server.api.login;
 
 import kr.pbs.babycare.server.entity.Parent;
 import org.junit.jupiter.api.Test;
@@ -14,12 +14,12 @@ class LoginServiceTest {
 
     @Test
     void login() {
-        Parent parent = Parent.builder()
+        LoginDTO dto = LoginDTO.builder()
                 .email("unialto@nate.com")
                 .password("babycare")
                 .build();
 
-        Parent p = loginService.login(parent);
+        Parent p = loginService.login(dto);
 
         System.out.println(p);
 

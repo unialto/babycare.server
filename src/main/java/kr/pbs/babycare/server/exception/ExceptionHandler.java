@@ -1,8 +1,7 @@
-package kr.pbs.babycare.server.config.handler;
+package kr.pbs.babycare.server.exception;
 
-import kr.pbs.babycare.server.config.exception.ServiceException;
-import kr.pbs.babycare.server.dto.Result;
-import kr.pbs.babycare.server.dto.Results;
+import kr.pbs.babycare.server.api.SimpleResult;
+import kr.pbs.babycare.server.api.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(ServiceException.class)
     public @ResponseBody
-    Results handleServiceException(HttpServletRequest request, ServiceException e) {
+    Result handleServiceException(HttpServletRequest request, ServiceException e) {
         return e.getResult();
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
     public @ResponseBody
-    Results handleException(HttpServletRequest request, Exception e) {
-        return Result.FAIL;
+    Result handleException(HttpServletRequest request, Exception e) {
+        return SimpleResult.FAIL;
     }
 }

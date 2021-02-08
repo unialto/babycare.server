@@ -1,7 +1,5 @@
-package kr.pbs.babycare.server.service;
+package kr.pbs.babycare.server.api.child;
 
-import kr.pbs.babycare.server.entity.Child;
-import kr.pbs.babycare.server.entity.Parent;
 import kr.pbs.babycare.server.entity.code.Gender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +17,17 @@ class ChildServiceTest {
 
     @Test
     void addChild() {
-        Child child = Child.builder()
-                .parent(Parent.builder().idx(47).build())
-                .name("친구2")
+        ChildDTO dto = ChildDTO.builder()
+                .parentIdx(48)
+                .name("친구3")
                 .birthday(LocalDate.now().minus(2, ChronoUnit.YEARS))
                 .gender(Gender.F)
                 .build();
 
-        childService.addChild(child);
+        childService.addChild(dto);
 
-        System.out.println(child);
+        System.out.println(dto);
 
-        assertNotEquals(child.getIdx(), 0);
+        assertNotEquals(dto.getIdx(), 0);
     }
 }

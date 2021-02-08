@@ -1,6 +1,6 @@
-package kr.pbs.babycare.server.dto;
+package kr.pbs.babycare.server.api;
 
-public interface Results {
+public interface Result {
     public String getCode();
 
     public String getMessage();

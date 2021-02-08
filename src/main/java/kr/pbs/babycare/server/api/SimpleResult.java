@@ -1,4 +1,4 @@
-package kr.pbs.babycare.server.dto;
+package kr.pbs.babycare.server.api;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Result implements Results {
+public enum SimpleResult implements Result {
     SUCC("S", "성공했습니다."),
     FAIL("F", "실패했습니다."),
     ;
@@ -19,7 +19,7 @@ public enum Result implements Results {
     @NonNull private String message;
     private Object data;
 
-    public Result setData(Object data) {
+    public SimpleResult setData(Object data) {
         this.data = data;
         return this;
     }

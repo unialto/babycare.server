@@ -1,13 +1,13 @@
-package kr.pbs.babycare.server.config.exception;
+package kr.pbs.babycare.server.exception;
 
-import kr.pbs.babycare.server.dto.Results;
+import kr.pbs.babycare.server.api.Result;
 import lombok.Getter;
 
 @Getter
 public class ServiceException extends RuntimeException {
-    private Results result;
+    private Result result;
 
-    public ServiceException (Results result) {
+    public ServiceException (Result result) {
         super(result.getCode() + " : " + result.getMessage());
 
         this.result = result;
