@@ -1,12 +1,10 @@
 package kr.pbs.babycare.server.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import kr.pbs.babycare.server.entity.code.ParentState;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -18,30 +16,28 @@ import java.util.List;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@SuperBuilder
+@Builder
 @Data
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(exclude = {"children"})
+@NoArgsConstructor
+@AllArgsConstructor
 public class Parent implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int idx;
+    private int idx;
 
-    protected String email;
+    private String email;
 
-    protected String password;
+    private String password;
 
-    protected String name;
+    private String name;
 
     @Enumerated(EnumType.STRING)
-    protected ParentState state;
+    private ParentState state;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    protected LocalDateTime regDt;
+    private LocalDateTime regDt;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    protected LocalDateTime updDt;
+    private LocalDateTime updDt;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    protected List<Child> children;
+    private List<Child> children;
 }

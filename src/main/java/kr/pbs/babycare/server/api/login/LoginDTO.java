@@ -1,15 +1,16 @@
 package kr.pbs.babycare.server.api.login;
 
-import kr.pbs.babycare.server.entity.Parent;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+@Builder
 @Data
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
-public class LoginDTO extends Parent {
+public class LoginDTO {
+    private int idx;
+
+    private String email;
+
+    private String password;
+
     private String token;
 }

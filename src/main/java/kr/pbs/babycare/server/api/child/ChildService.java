@@ -22,27 +22,18 @@ public class ChildService {
         List<Child> children = childRepository.findByParentAndStateNot(Parent.builder().idx(parentIdx).build(), ChildState.D);
 
         return children.stream()
-                .map(c -> ChildDTO.builder()
-                        .idx(c.getIdx())
-                        .name(c.getName())
-                        .birthday(c.getBirthday())
-                        .gender(c.getGender())
-                        .state(c.getState())
-                        .build()
-                )
+                .map(ChildMapper.MAPPER::toChildDTO)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public void addChild(ChildDTO dto) {
-        Parent parent = Parent.builder()
-                .idx(dto.getParentIdx())
-                .build();
+        Child child = ChildMapper.MAPPER.toChild(dto);
 
         /*
         같은 이름이 있으면 예외
          */
-        childRepository.findByParentAndNameAndStateNot(parent, dto.getName(), ChildState.D)
+        childRepository.findByParentAndNameAndStateNot(child.getParent(), child.getName(), ChildState.D)
                 .ifPresent(c -> {
                     throw new ServiceException(ChildResult.FAIL_EXISTS_NAME);
                 });
@@ -50,13 +41,8 @@ public class ChildService {
         /*
         등록
          */
-        childRepository.save(
-                Child.builder()
-                .name(dto.getName())
-                .birthday(dto.getBirthday())
-                .gender(dto.getGender())
-                .parent(parent)
-                .build()
-        );
+        childRepository.save(child);
+
+        dto.setIdx(child.getIdx());
     }
 }

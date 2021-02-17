@@ -30,12 +30,9 @@ public class JoinService {
         /*
         등록
          */
-        parentRepository.save(
-                Parent.builder()
-                        .email(dto.getEmail())
-                        .password(passwordEncoder.encode(dto.getPassword()))
-                        .name(dto.getName())
-                        .build()
-        );
+        Parent parent = JoinMapper.MAPPER.toParent(dto);
+        parent.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        parentRepository.save(parent);
     }
 }

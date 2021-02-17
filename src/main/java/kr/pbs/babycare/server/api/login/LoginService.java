@@ -33,10 +33,6 @@ public class LoginService {
             throw new ServiceException(LoginResult.FAIL_DORMANT);
         }
 
-        return LoginDTO.builder()
-                .idx(parent.getIdx())
-                .email(parent.getEmail())
-                .password(parent.getPassword())
-                .build();
+        return LoginMapper.MAPPER.toLoginDTO(parent);
     }
 }

@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Service
-@PropertySource("classpath:/security.yml")
+@PropertySource("classpath:security.properties")
 @RequiredArgsConstructor
 public class SecurityService {
     @Value("${babycare.security.token.key}")

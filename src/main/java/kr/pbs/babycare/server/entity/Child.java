@@ -1,13 +1,11 @@
 package kr.pbs.babycare.server.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import kr.pbs.babycare.server.entity.code.ChildState;
 import kr.pbs.babycare.server.entity.code.Gender;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -19,33 +17,30 @@ import java.time.LocalDateTime;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@SuperBuilder
+@Builder
 @Data
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(exclude = {"parent"})
+@NoArgsConstructor
+@AllArgsConstructor
 public class Child implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int idx;
+    private int idx;
 
-    protected String name;
+    private String name;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    protected LocalDate birthday;
-
-    @Enumerated(EnumType.STRING)
-    protected Gender gender;
+    private LocalDate birthday;
 
     @Enumerated(EnumType.STRING)
-    protected ChildState state;
+    private Gender gender;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    protected LocalDateTime regDt;
+    @Enumerated(EnumType.STRING)
+    private ChildState state;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    protected LocalDateTime updDt;
+    private LocalDateTime regDt;
+
+    private LocalDateTime updDt;
 
     @ManyToOne
     @JoinColumn(name = "parent_idx")
-    protected Parent parent;
+    private Parent parent;
 }

@@ -1,15 +1,26 @@
 package kr.pbs.babycare.server.api.child;
 
-import kr.pbs.babycare.server.entity.Child;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import kr.pbs.babycare.server.entity.code.ChildState;
+import kr.pbs.babycare.server.entity.code.Gender;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+import java.time.LocalDate;
+
+@Builder
 @Data
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
-public class ChildDTO extends Child {
+public class ChildDTO {
+    private int idx;
+
+    private String name;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate birthday;
+
+    private Gender gender;
+
+    private ChildState state;
+
     private int parentIdx;
 }
