@@ -1,10 +1,7 @@
 package kr.pbs.babycare.server.entity;
 
 import kr.pbs.babycare.server.entity.code.ParentState;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -20,6 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"children"})
 public class Parent implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

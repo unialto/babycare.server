@@ -2,11 +2,11 @@ package kr.pbs.babycare.server.api.login;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import kr.pbs.babycare.server.api.Result;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum LoginResult implements Result {
     FAIL_NOT_EXISTS("FP002", "등록되지 않은 회원입니다."),
@@ -15,6 +15,6 @@ public enum LoginResult implements Result {
     FAIL_DORMANT("FP005", "휴면회원입니다.")
     ;
 
-    private String code;
-    private String message;
+    private final String code;
+    private final String message;
 }

@@ -3,7 +3,6 @@ package kr.pbs.babycare.server.api;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Getter
@@ -15,8 +14,8 @@ public enum SimpleResult implements Result {
     FAIL("F", "실패했습니다."),
     ;
 
-    @NonNull private String code;
-    @NonNull private String message;
+    private final String code;
+    private final String message;
     private Object data;
 
     public SimpleResult setData(Object data) {

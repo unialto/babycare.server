@@ -1,10 +1,10 @@
 package kr.pbs.babycare.server.entity.code;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum ParentState {
     A("활동"),
     W("탈퇴"),
@@ -12,5 +12,5 @@ public enum ParentState {
     D("휴면")
     ;
 
-    private String comment;
+    private final String comment;
 }
